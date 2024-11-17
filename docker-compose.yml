@@ -1,0 +1,27 @@
+services:
+  ruby-app:
+    build: .
+    stdin_open: true
+    tty: true
+    depends_on:
+      - selenium
+    volumes:
+      - .:/app
+    networks:
+      - selenium_net
+  selenium:
+    image: selenium/standalone-chrome-debug:latest
+    container_name: selenium_chrome
+    volumes:
+      - .cookies/directory/cookies.json:/usr/src/app/cookies.json
+    ports:
+      - "4444:4444"
+      - "5900:5900"
+      - "9222:9222"
+    shm_size: '2gb'
+    networks:
+      - selenium_net
+
+networks:
+  selenium_net:
+    driver: bridge
