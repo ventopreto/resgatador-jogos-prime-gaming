@@ -65,7 +65,7 @@ begin
   driver.get ENV['AMAZON_GAMING_URL']
   login(driver, wait)
   navigate_to_free_games(driver, wait)
-  get_links_and_titles(driver, wait)
+  get_game_links_and_titles(driver, wait)
 
 rescue Selenium::WebDriver::Error::NoSuchElementError => e
   puts "Erro: Elemento não encontrado. Detalhes: #{e.message}"
